@@ -1,0 +1,39 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+    string estudiante;
+    string producto;
+    int cantidad;
+    double precioUnitario;
+    double subtotal, descuento, total;
+    double dineroEntregado, cambio, falta;
+    cout << "Ingrese el nombre de la estudiante: ";
+    getline(cin, estudiante);
+    cout << "Ingrese el nombre del producto: ";
+    getline(cin, producto);
+    cout << "Ingrese la cantidad de unidades: ";
+    cin >> cantidad;
+    cout << "Ingrese el precio de cada unidad: ";
+    cin >> precioUnitario;
+    subtotal = cantidad * precioUnitario;
+    descuento = subtotal * 0.10; // 10% de descuento didáctico
+    total = subtotal - descuento;
+    cout << "\n--- RESUMEN DE COMPRA ---" << endl;
+    cout << "Estudiante: " << estudiante << endl;
+    cout << "Producto: " << producto << endl;
+    cout << "Subtotal: $" << subtotal << endl;
+    cout << "Descuento (10%): $" << descuento << endl;
+    cout << "Total a pagar: $" << total << endl;
+    cout << "\nIngrese el dinero entregado: ";
+    cin >> dineroEntregado;
+    if (dineroEntregado >= total) {
+        cambio = dineroEntregado - total;
+        cout << "¡Pago exitoso! Su cambio es: $" << cambio << endl;
+    } else {
+        falta = total - dineroEntregado;
+        cout << "Dinero insuficiente. Le falta por pagar: $" << falta << endl;
+    }
+
+    return 0;
+}
