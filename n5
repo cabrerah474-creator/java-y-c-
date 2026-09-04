@@ -1,0 +1,112 @@
+import java.util.Scanner;
+
+public class n5 {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int temperatura;
+        int cantidad = 0;
+        int suma = 0;
+        int mayor = 0;
+        int menor = 0;
+
+        int frio = 0;
+        int templado = 0;
+        int calido = 0;
+        int muyCalido = 0;
+
+        System.out.println("=== REGISTRO DE TEMPERATURAS ===");
+        System.out.println("Ingrese temperaturas entre -50 y 60.");
+        System.out.println("Ingrese 999 para finalizar.");
+
+        while (true) {
+
+            System.out.print("\nIngrese una temperatura: ");
+            temperatura = sc.nextInt();
+
+            // Centinela para terminar
+            if (temperatura == 999) {
+                break;
+            }
+
+            // Validar temperatura
+            if (temperatura < -50 || temperatura > 60) {
+
+                System.out.println("ERROR: Temperatura invalida.");
+                System.out.println("Solo se aceptan temperaturas entre -50 y 60.");
+
+            } else {
+
+                // Guardar la primera temperatura como mayor y menor
+                if (cantidad == 0) {
+                    mayor = temperatura;
+                    menor = temperatura;
+                } else {
+
+                    // Buscar la temperatura mayor
+                    if (temperatura > mayor) {
+                        mayor = temperatura;
+                    }
+
+                    // Buscar la temperatura menor
+                    if (temperatura < menor) {
+                        menor = temperatura;
+                    }
+                }
+
+                // Contar y sumar temperaturas validas
+                cantidad++;
+                suma = suma + temperatura;
+
+                // Clasificar temperatura
+                if (temperatura < 10) {
+
+                    frio++;
+                    System.out.println("Clasificacion: Frio");
+
+                } else if (temperatura <= 24) {
+
+                    templado++;
+                    System.out.println("Clasificacion: Templado");
+
+                } else if (temperatura <= 34) {
+
+                    calido++;
+                    System.out.println("Clasificacion: Calido");
+
+                } else {
+
+                    muyCalido++;
+                    System.out.println("Clasificacion: Muy calido");
+                }
+            }
+        }
+
+        // Mostrar resultados finales
+        System.out.println("\n=== RESULTADOS FINALES ===");
+
+        if (cantidad > 0) {
+
+            double promedio = (double) suma / cantidad;
+
+            System.out.println("Cantidad de temperaturas: " + cantidad);
+            System.out.println("Temperatura mayor: " + mayor);
+            System.out.println("Temperatura menor: " + menor);
+            System.out.println("Promedio: " + promedio);
+
+            System.out.println("\nCantidad por categoria:");
+            System.out.println("Frio: " + frio);
+            System.out.println("Templado: " + templado);
+            System.out.println("Calido: " + calido);
+            System.out.println("Muy calido: " + muyCalido);
+
+        } else {
+
+            System.out.println("No se ingresaron temperaturas validas.");
+        }
+
+        sc.close();
+    }
+}
